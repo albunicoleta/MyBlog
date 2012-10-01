@@ -2,7 +2,7 @@
 /**
  * Class for post controller
  */
-class Post extends CI_Controller {
+class Posts extends CI_Controller {
 
 	/**
      * Index action
@@ -19,7 +19,7 @@ class Post extends CI_Controller {
      */
     public function create()
     {
-        $this->load->view('post/create');
+        $this->load->view('posts/create');
     }
     
     /**
@@ -28,6 +28,13 @@ class Post extends CI_Controller {
      */
     public function postCreate()
     {
-        
+        if ($postData = $this->input->post()){
+            $this->load->model('post');
+            $this->post->create($this->input->post());
+        }
+        else{
+            $this->load->helper('url');
+            redirect('posts/create');
+        }
     }
 }
