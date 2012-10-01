@@ -12,4 +12,22 @@ class Post extends CI_Controller {
 	{
 	    $this->load->view('welcome_message');
 	}
+    
+    /**
+     * Create action for new blog post
+     * @return void
+     */
+    public function create()
+    {
+        $this->load->view('post/create');
+    }
+    
+    /**
+     * This action will process post information from create action
+     * @return
+     */
+    public function postCreate()
+    {
+        
+    }
 }
