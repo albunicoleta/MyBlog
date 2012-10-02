@@ -13,13 +13,17 @@ class Posts extends CI_Controller {
 	    $this->load->view('welcome_message');
 	}
     
+    
     /**
      * Create action for new blog post
      * @return void
      */
     public function create()
     {
-        $this->load->view('posts/create');
+	$this->load->helper('url');
+	$data['title'] = 'Create a new Blog Post';
+	$this->load->view('header',$data);
+	$this->load->view('posts/create');
     }
     
     /**
@@ -28,7 +32,7 @@ class Posts extends CI_Controller {
      */
     public function postCreate()
     {
-        if ($postData = $this->input->post()){
+	if ($postData = $this->input->post()){
             $this->load->model('post');
             $this->post->create($this->input->post());
         }
