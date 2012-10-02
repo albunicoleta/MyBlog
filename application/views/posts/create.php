@@ -1,10 +1,3 @@
-<html>
-    <head>
-        <title>Create new post</title>
-        <style type="text/css">
-            label {display:block;}
-        </style>
-    </head>
     <body>
         <form method="post" action="postCreate"> 
             <label for="author">Author</label>
