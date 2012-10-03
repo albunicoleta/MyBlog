@@ -1,2 +1,5 @@
-body {background-color:lightblue;}
-label {display:block;}
+body {background-color:#66CCCC;}
+#wrapper {width: 80%;height: 80%;text-align: center;}
+label {display:block;text-align:right;width:425px;float:left;}
+form {width: 690px;}
+#submit {text-align: right;width: 652px;}
