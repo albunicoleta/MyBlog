@@ -3,7 +3,13 @@
  * Class for post controller
  */
 class Posts extends CI_Controller {
-
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('session');
+    }
+    
 	/**
      * Index action
      * @return void
@@ -24,6 +30,7 @@ class Posts extends CI_Controller {
         $data['title'] = 'Create a new Blog Post';
         $this->load->view('header',$data);
         $this->load->view('posts/create');
+        echo $this->session->flashdata("create_error");
     }
     
     /**
@@ -39,7 +46,7 @@ class Posts extends CI_Controller {
             $this->post->create($this->input->post());
         }
         else{
-            
+            $this->session->set_flashdata("create_error", "Error in create form");   
         }
         $this->load->helper('url');
         redirect('posts/create');
