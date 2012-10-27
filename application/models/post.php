@@ -12,4 +12,14 @@ class Post extends CI_Model {
         $this->db->insert('posts', $this);
     }
     
+    public function load($id)
+    {
+        $this->load->database();
+        
+        $query = $this->db->get_where('posts',array('id' => $id));
+                              
+        foreach ($query->result() as $obj){
+            return $obj;
+        }
+    }
 }
