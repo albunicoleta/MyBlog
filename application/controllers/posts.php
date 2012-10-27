@@ -34,14 +34,33 @@ class Posts extends CI_Controller {
      */
     public function postCreate()
     {
-	if ($postData = $this->input->post()){
+        if ($this->_validateCreateForm()){
             $this->load->model('post');
             $this->post->create($this->input->post());
         }
         else{
-            $this->load->helper('url');
-            redirect('posts/create');
+            
         }
+        $this->load->helper('url');
+        redirect('posts/create');
+    }
+    
+    /**
+     * Will return FALSE if the form is NOT VALID
+     * Will return TRUE if the form is VALID
+     * @return bool
+     */
+    protected function _validateCreateForm()
+    {
+        //we grab the POST data from the form
+        $postData = $this->input->post();
+        //we check that each value from the key/value pairs is not NULL
+        foreach ($postData as $value){
+            if ($value == null){
+                return FALSE;    
+            }  
+        }
+        return TRUE;
     }
     
     /**
