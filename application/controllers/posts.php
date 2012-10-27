@@ -10,7 +10,7 @@ class Posts extends CI_Controller {
      */
     public function index()
 	{
-	    $this->load->view('welcome_message');
+        $this->load->view('welcome_message');
 	}
     
     
@@ -20,15 +20,17 @@ class Posts extends CI_Controller {
      */
     public function create()
     {
-	$this->load->helper('url');
-	$data['title'] = 'Create a new Blog Post';
-	$this->load->view('header',$data);
-	$this->load->view('posts/create');
+        $this->load->helper('url');
+        $data['title'] = 'Create a new Blog Post';
+        $this->load->view('header',$data);
+        $this->load->view('posts/create');
     }
     
     /**
      * This action will process post information from create action
-     * @return
+     * @todo after saving the model , do SOMETHING
+     * @todo FIX the timestamp
+     * @return void
      */
     public function postCreate()
     {
@@ -40,5 +42,20 @@ class Posts extends CI_Controller {
             $this->load->helper('url');
             redirect('posts/create');
         }
+    }
+    
+    /**
+     *Action view
+     *
+     */
+    public function view()
+    { 
+        $postId = (int)$this->uri->segment(3);
+        $this->load->model('post');
+        $postModel = $this->post->load($postId);
+        $data['post'] = $postModel;
+        $this->load->view('posts/view',$data);
+        
+        
     }
 }
