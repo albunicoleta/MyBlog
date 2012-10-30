@@ -7,7 +7,7 @@ class Post extends CI_Model {
         $this->author = $data['author'];    
         $this->content = $data['content'];
         $this->title = $data['title'];
-        $this->created_at = time();
+        $this->created_at = date('Y-m-d');
         
         $this->db->insert('posts', $this);
     }
